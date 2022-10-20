@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Model_laporan_peserta;
 use App\Models\Model_profil;
 
-class LaporanPeserta extends BaseController
+class LaporanPendaftar extends BaseController
 {
 
     protected $Model_laporan_peserta;
@@ -35,7 +35,7 @@ class LaporanPeserta extends BaseController
             'judul' => 'Laporan Peserta Magang',
             'data' => $data
         ];
-        return view('Admin/viewLaporanPeserta', $data);
+        return view('Admin/viewLaporanPendaftar', $data);
     }
 
     public function data($tanggal = null, $status = null)
@@ -102,6 +102,6 @@ class LaporanPeserta extends BaseController
             'laporan' => $laporan,
             'profil' => $profil
         ];
-        return view('Admin/cetakLaporanPeserta', $data);
+        return view('Admin/cetakLaporanPendaftar', $data);
     }
 }

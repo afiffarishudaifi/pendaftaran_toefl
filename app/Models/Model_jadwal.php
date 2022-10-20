@@ -63,4 +63,13 @@ class Model_jadwal extends Model
         $builder->where('idjadwal', $id);
         return $builder->delete();
     }
+
+    public function cek_nama($nama)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('jadwal');
+        $builder->select('idjadwal');
+        $builder->where('nama_jadwal', $nama);
+        return $builder->get();
+    }
 }

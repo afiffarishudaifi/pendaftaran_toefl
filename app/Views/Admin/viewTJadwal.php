@@ -15,8 +15,8 @@
         <div class="page-header">
             <h1 class="page-title"><?= $judul; ?></h1>
             <div class="page-header-actions">
-                <!-- <button class="btn btn-sm btn-primary btn-round" data-toggle="modal" data-target="#addModal"><i
-                        class="fa fa-plus"></i> Tambah Data</button> -->
+                <button class="btn btn-sm btn-primary btn-round" data-toggle="modal" data-target="#addModal"><i
+                        class="fa fa-plus"></i> Tambah Data</button>
             </div>
         </div>
 
@@ -33,9 +33,10 @@
                             <tr>
                                 <th style="text-align: center;">No</th>
                                 <th style="text-align: center;">Nama</th>
-                                <th style="text-align: center;">Sekolah</th>
-                                <th style="text-align: center;">Status</th>
-                                <th style="text-align: center;">Alamat Peserta</th>
+                                <th style="text-align: center;">Periode</th>
+                                <th style="text-align: center;">Jenis</th>
+                                <th style="text-align: center;">Waktu Daftar</th>
+                                <th style="text-align: center;">Waktu Pelaksanaan</th>
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
@@ -43,31 +44,32 @@
                             <tr>
                                 <th style="text-align: center;">No</th>
                                 <th style="text-align: center;">Nama</th>
-                                <th style="text-align: center;">Sekolah</th>
-                                <th style="text-align: center;">Status</th>
-                                <th style="text-align: center;">Alamat Peserta</th>
+                                <th style="text-align: center;">Periode</th>
+                                <th style="text-align: center;">Jenis</th>
+                                <th style="text-align: center;">Waktu Daftar</th>
+                                <th style="text-align: center;">Waktu Pelaksanaan</th>
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             <?php
                     $no = 1;
-                    foreach ($siswa as $item) {
+                    foreach ($jadwal as $item) {
                     ?>
                             <tr>
                                 <td width="1%"><?= $no++; ?></td>
-                                <td><?= $item['nama_siswa']; ?></td>
-                                <td><?= $item['nama_sekolah']; ?></td>
-                                <td><?= $item['status']; ?></td>
-                                <td><?= $item['alamat_siswa']; ?></td>
+                                <td><?= $item['nama_jadwal']; ?></td>
+                                <td><?= $item['nama_periode']; ?></td>
+                                <td><?= $item['tanggal_mulai_pendaftaran']; ?> - <?= $item['tanggal_selesai_pendaftaran']; ?></td>
+                                <td><?= $item['tanggal_mulai_pelaksanaan']; ?> - <?= $item['tanggal_selesai_pelaksanaan']; ?></td>
                                 <td>
                                     <center>
                                         <a href="" data-toggle="modal" data-toggle="modal" data-target="#updateModal"
-                                            name="btn-edit" onclick="detail_edit(<?= $item['id_siswa']; ?>)"
+                                            name="btn-edit" onclick="detail_edit(<?= $item['idjadwal']; ?>)"
                                             class="btn btn-sm btn-edit btn-warning">Edit</i></a>
                                         <a href="" class="btn btn-sm btn-delete btn-danger"
-                                            onclick="Hapus(<?= $item['id_siswa']; ?>)" data-toggle="modal"
-                                            data-target="#deleteModal" data-id="<?= $item['id_siswa']; ?>">Hapus</a>
+                                            onclick="Hapus(<?= $item['idjadwal']; ?>)" data-toggle="modal"
+                                            data-target="#deleteModal" data-id="<?= $item['idjadwal']; ?>">Hapus</a>
                                     </center>
                                 </td>
                             </tr>
@@ -83,14 +85,14 @@
     <!-- End Page -->
 
     <!-- Start Modal Add Class-->
-    <form action="<?php echo base_url('Admin/Peserta/add_siswa'); ?>" method="post" id="form_add"
+    <form action="<?php echo base_url('Admin/Jadwal/add_jadwal'); ?>" method="post" id="form_add"
         data-parsley-validate="true" autocomplete="off" enctype="multipart/form-data">
         <div class="modal fade" id="addModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <?= csrf_field(); ?>
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tambah Data Siswa </h5>
+                        <h5 class="modal-title">Tambah Data Jadwal </h5>
                         <button type="reset" class="close" data-dismiss="modal" id="batal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -98,84 +100,59 @@
                     <div class="modal-body">
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Nama Siswa</label>
+                            <label class="form-control-label">Nama Jadwal</label>
                             <input type="text" class="form-control" id="input_nama" name="input_nama"
-                                data-parsley-required="true" placeholder="Masukkan Nama Siswa" autocomplete="off" />
+                                data-parsley-required="true" placeholder="Masukkan Nama Jadwal" autocomplete="off" />
+                            <span class="text-danger" id="error_nis"></span>
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Sekolah</label>
+                            <label class="form-control-label">Nama Jenis</label>
                             <br>
-                            <select name="input_sekolah" id="input_sekolah" style="width: 100%;"
+                            <select name="input_jenis" id="input_jenis" style="width: 100%;"
+                                class="form-control select2" data-plugin="select2" required>
+                            </select>
+                        </div>                        
+
+                        <div class="form-group form-material">
+                            <label class="form-control-label">Nama Periode</label>
+                            <br>
+                            <select name="input_periode" id="input_periode" style="width: 100%;"
                                 class="form-control select2" data-plugin="select2" required>
                             </select>
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Nomor Induk</label>
-                            <input type="text" class="form-control" id="input_nis" name="input_nis"
+                            <label class="form-control-label">Tanggal Mulai Daftar</label>
+                            <input type="date" class="form-control" id="input_mulai_daftar" name="input_mulai_daftar"
                                 data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
-                            <span class="text-danger" id="error_nis"></span>
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Username Siswa</label>
-                            <input type="text" class="form-control" id="input_username" name="input_username"
-                                data-parsley-required="true" placeholder="Masukkan Username Siswa" autocomplete="off" />
-                            <span class="text-danger" id="error_username"></span>
+                            <label class="form-control-label">Tanggal Selesai Daftar</label>
+                            <input type="date" class="form-control" id="input_selesai_daftar" name="input_selesai_daftar"
+                                data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-group form-material">Password Siswa</label>
-                            <input type="Password" class="form-control" id="input_password" name="input_password"
-                                data-parsley-required="true" placeholder="Masukkan Password Siswa" autofocus="on">
-                        </div>
-                        <div class="form-group form-material">
-                            <label class="form-group form-material">Ulangi Password</label>
-                            <input type="Password" class="form-control" id="input_password_konfirmasi"
-                                name="input_password_konfirmasi" data-parsley-required="true"
-                                placeholder="Masukkan Ulangi Password" autofocus="on"
-                                data-parsley-equalto="#input_password">
+                            <label class="form-control-label">Tanggal Mulai Pelaksanaan</label>
+                            <input type="date" class="form-control" id="input_mulai_laksana" name="input_mulai_laksana"
+                                data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Email Siswa</label>
-                            <input type="email" class="form-control" id="input_email" name="input_email"
-                                data-parsley-required="true" placeholder="Masukkan Email Siswa" autocomplete="off" />
+                            <label class="form-control-label">Tanggal Selesai Pelaksanaan</label>
+                            <input type="date" class="form-control" id="input_selesai_laksana" name="input_selesai_laksana"
+                                data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
                         </div>
 
-                        <div class="form-group form-material">
-                            <label class="form-control-label">No Telp</label>
-                            <input type="number" class="form-control" id="input_no_telp" name="input_no_telp"
-                                data-parsley-required="true" placeholder="Masukkan No Telp" autocomplete="off" />
-                        </div>
-
-                        <div class="form-group form-material">
-                            <label class="form-control-label">Alamat Peserta</label>
-                            <textarea class="form-control" id="input_alamat" name="input_alamat"
-                                data-parsley-required="true" placeholder="Masukkan Alamat"></textarea>
-                        </div>
-
-                        <div class="form-group form-material">
-                            <label class="form-control-label">Jurusan</label>
-                            <input type="text" class="form-control" id="input_jurusan" name="input_jurusan"
-                                data-parsley-required="true" placeholder="Masukkan Jurusan" autocomplete="off" />
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-control-label"><b>Foto Siswa</b></label>
-                            <br>
-                            <input type="file" id="input_foto" class="dropify-event" name="input_foto"
-                                accept="image/png, image/gif, image/jpeg" />
-                        </div>
-
-                        <div class="form-group form-material">
+                        <!-- <div class="form-group form-material">
                             <label class="form-control-label">Status Siswa</label>
                             <select name="input_status" class="form-control" id="input_status" required>
                                 <option value="Aktif" selected="">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>
                             </select>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="modal-footer">
@@ -190,7 +167,7 @@
     <!-- End Modal Add Class-->
 
     <!-- Modal Edit Class-->
-    <form action="<?php echo base_url('Admin/Peserta/update_siswa'); ?>" method="post" id="form_edit"
+    <form action="<?php echo base_url('Admin/Jadwal/update_jadwal'); ?>" method="post" id="form_edit"
         data-parsley-validate="true" autocomplete="off" enctype="multipart/form-data">
         <div class="modal fade" id="updateModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <?= csrf_field(); ?>
@@ -203,94 +180,64 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" style="display: none;" name="id_siswa" id="id_siswa">
+                        <input type="hidden" style="display: none;" name="idjadwal" id="idjadwal">
+
+                        
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Nama Siswa</label>
+                            <label class="form-control-label">Nama Jadwal</label>
                             <input type="text" class="form-control" id="edit_nama" name="edit_nama"
-                                data-parsley-required="true" placeholder="Masukkan Nama Siswa" autocomplete="off" />
+                                data-parsley-required="true" placeholder="Masukkan Nama Jadwal" autocomplete="off" />
+                            <span class="text-danger" id="error_nis"></span>
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Sekolah</label>
+                            <label class="form-control-label">Nama Jenis</label>
                             <br>
-                            <select name="edit_sekolah" id="edit_sekolah" style="width: 100%;"
+                            <select name="edit_jenis" id="edit_jenis" style="width: 100%;"
+                                class="form-control select2" data-plugin="select2" required>
+                            </select>
+                        </div>                        
+
+                        <div class="form-group form-material">
+                            <label class="form-control-label">Nama Periode</label>
+                            <br>
+                            <select name="edit_periode" id="edit_periode" style="width: 100%;"
                                 class="form-control select2" data-plugin="select2" required>
                             </select>
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Nomor Induk</label>
-                            <input type="text" class="form-control" id="edit_nis" name="edit_nis"
+                            <label class="form-control-label">Tanggal Mulai Daftar</label>
+                            <input type="date" class="form-control" id="edit_mulai_daftar" name="edit_mulai_daftar"
                                 data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
-                            <span class="text-danger" id="error_nis"></span>
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Username Siswa</label>
-                            <input type="text" class="form-control" id="edit_username" name="edit_username"
-                                data-parsley-required="true" placeholder="Masukkan Username Siswa" autocomplete="off" />
-                            <span class="text-danger" id="error_username"></span>
+                            <label class="form-control-label">Tanggal Selesai Daftar</label>
+                            <input type="date" class="form-control" id="edit_selesai_daftar" name="edit_selesai_daftar"
+                                data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-group form-material">Password Siswa</label>
-                            <input type="Password" class="form-control" id="edit_password" name="edit_password"
-                                placeholder="Masukkan Password Siswa" autofocus="on">
-                        </div>
-                        <div class="form-group form-material">
-                            <label class="form-group form-material">Ulangi Password</label>
-                            <input type="Password" class="form-control" id="edit_password_konfirmasi"
-                                name="edit_password_konfirmasi" placeholder="Masukkan Ulangi Password" autofocus="on"
-                                data-parsley-equalto="#edit_password">
+                            <label class="form-control-label">Tanggal Mulai Pelaksanaan</label>
+                            <input type="date" class="form-control" id="edit_mulai_laksana" name="edit_mulai_laksana"
+                                data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Email Siswa</label>
-                            <input type="email" class="form-control" id="edit_email" name="edit_email"
-                                data-parsley-required="true" placeholder="Masukkan Email Siswa" autocomplete="off" />
+                            <label class="form-control-label">Tanggal Selesai Pelaksanaan</label>
+                            <input type="date" class="form-control" id="edit_selesai_laksana" name="edit_selesai_laksana"
+                                data-parsley-required="true" placeholder="Masukkan Nomor Induk" autocomplete="off" />
                         </div>
 
-                        <div class="form-group form-material">
-                            <label class="form-control-label">No Telp</label>
-                            <input type="number" class="form-control" id="edit_no_telp" name="edit_no_telp"
-                                data-parsley-required="true" placeholder="Masukkan No Telp" autocomplete="off" />
-                        </div>
-
-                        <div class="form-group form-material">
-                            <label class="form-control-label">Alamat Peserta</label>
-                            <textarea class="form-control" id="edit_alamat" name="edit_alamat"
-                                data-parsley-required="true" placeholder="Masukkan Alamat"></textarea>
-                        </div>
-
-                        <div class="form-group form-material">
-                            <label class="form-control-label">Jurusan</label>
-                            <input type="text" class="form-control" id="edit_jurusan" name="edit_jurusan"
-                                data-parsley-required="true" placeholder="Masukkan Jurusan" autocomplete="off" />
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <center>
-                                    <img id="foto_lama" style="width: 120px; height: 160px;" src="">
-                                </center>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-control-label"><b>Foto Siswa</b></label>
-                            <br>
-                            <input type="file" id="edit_foto" class="dropify-event" name="edit_foto"
-                                accept="image/png, image/gif, image/jpeg" />
-                        </div>
-
-                        <div class="form-group form-material">
+                        <!-- <div class="form-group form-material">
                             <label class="form-control-label">Status Siswa</label>
                             <select name="edit_status" class="form-control" id="edit_status" required>
                                 <option value="Aktif" selected="">Aktif</option>
                                 <option value="Tidak Aktif">Tidak Aktif</option>
                             </select>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="modal-footer">
@@ -304,7 +251,7 @@
     <!-- End Modal Edit Class-->
 
     <!-- Start Modal Delete Class -->
-    <form action="<?php echo base_url('Admin/Peserta/delete_siswa'); ?>" method="post">
+    <form action="<?php echo base_url('Admin/Jadwal/delete_jadwal'); ?>" method="post">
         <div class="modal fade" id="deleteModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -316,7 +263,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <h4>Apakah Ingin menghapus siswa ini?</h4>
+                        <h4>Apakah Ingin menghapus jadwal ini?</h4>
 
                     </div>
                     <div class="modal-footer">
@@ -342,11 +289,11 @@
     };
 
     $(function() {
-        $("#input_sekolah").select2({
-            placeholder: "Pilih Sekolah",
+        $("#input_jenis").select2({
+            placeholder: "Pilih Jenis",
             theme: 'bootstrap4',
             ajax: {
-                url: '<?php echo base_url('Admin/Peserta/data_sekolah'); ?>',
+                url: '<?php echo base_url('Admin/Jadwal/data_jenis'); ?>',
                 type: "post",
                 delay: 250,
                 dataType: 'json',
@@ -364,11 +311,11 @@
             }
         });
 
-        $("#edit_sekolah").select2({
-            placeholder: "Pilih Sekolah",
+        $("#edit_jenis").select2({
+            placeholder: "Pilih Jenis",
             theme: 'bootstrap4',
             ajax: {
-                url: '<?php echo base_url('Admin/Peserta/data_sekolah'); ?>',
+                url: '<?php echo base_url('Admin/Jadwal/data_jenis'); ?>',
                 type: "post",
                 delay: 250,
                 dataType: 'json',
@@ -386,21 +333,66 @@
             }
         });
 
-        $("#input_username").keyup(function() {
-            var username = $(this).val().trim();
+        
+        $("#input_periode").select2({
+            placeholder: "Pilih Periode",
+            theme: 'bootstrap4',
+            ajax: {
+                url: '<?php echo base_url('Admin/Jadwal/data_periode'); ?>',
+                type: "post",
+                delay: 250,
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function(response) {
+                    return {
+                        results: response.data
+                    };
+                },
+                cache: true
+            }
+        });
 
-            if (username != '') {
+        $("#edit_periode").select2({
+            placeholder: "Pilih Periode",
+            theme: 'bootstrap4',
+            ajax: {
+                url: '<?php echo base_url('Admin/Jadwal/data_periode'); ?>',
+                type: "post",
+                delay: 250,
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function(response) {
+                    return {
+                        results: response.data
+                    };
+                },
+                cache: true
+            }
+        });
+
+        $("#input_nama").keyup(function() {
+            var nama = $(this).val().trim();
+
+            if (nama != '') {
                 $.ajax({
                     type: 'GET',
                     dataType: 'json',
-                    url: '<?php echo base_url('Admin/Peserta/cek_username'); ?>' + '/' + username,
+                    url: '<?php echo base_url('Admin/Jadwal/cek_nama'); ?>' + '/' + nama,
                     success: function(data) {
                         if (data['results'] > 0) {
-                            $("#error_username").html(
+                            $("#error_nama").html(
                                 'Username telah dipakai,coba yang lain');
-                            $("#input_username").val('');
+                            $("#input_nama").val('');
                         } else {
-                            $("#error_username").html('');
+                            $("#error_nama").html('');
                         }
                     },
                     error: function() {
@@ -411,22 +403,22 @@
             }
 
         });
-        $("#edit_username").keyup(function() {
+        $("#edit_nama").keyup(function() {
 
-            var username = $(this).val().trim();
+            var nama = $(this).val().trim();
 
-            if (username != '' && username != $('#edit_username_lama').val()) {
+            if (nama != '' && nama != $('#edit_nama_lama').val()) {
                 $.ajax({
                     type: 'GET',
                     dataType: 'json',
-                    url: '<?php echo base_url('Admin/Peserta/cek_username'); ?>' + '/' + username,
+                    url: '<?php echo base_url('Admin/Jadwal/cek_nama'); ?>' + '/' + nama,
                     success: function(data) {
                         if (data['results'] > 0) {
-                            $("#error_edit_username").html(
-                                'Username telah dipakai,coba yang lain');
-                            $("#edit_username").val('');
+                            $("#error_edit_nama").html(
+                                'Nama telah dipakai,coba yang lain');
+                            $("#edit_nama").val('');
                         } else {
-                            $("#error_edit_username").html('');
+                            $("#error_edit_nama").html('');
                         }
                     },
                     error: function() {
@@ -489,7 +481,7 @@
     })
 
     function detail_edit(isi) {
-        $.getJSON('<?php echo base_url('Admin/Peserta/data_edit'); ?>' + '/' + isi, {},
+        $.getJSON('<?php echo base_url('Admin/Jadwal/data_edit'); ?>' + '/' + isi, {},
             function(json) {
                 $('#id_siswa').val(json.id_siswa);
                 $('#edit_nis').val(json.nomor_induk);
