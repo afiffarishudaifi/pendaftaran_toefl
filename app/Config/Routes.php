@@ -53,7 +53,6 @@ $routes->get('/Mahasiswa/Dashboard', 'Login::registrasiMahasiswa');
 
 // bagian admin
 $routes->get('/Admin/Dashboard', 'Admin\Dashboard::index');
-$routes->get('/Admin/Jadwal', 'Admin\Jadwal::index');
 
 // admin admin
 $routes->get('/Admin/Admin', 'Admin\Admin::index');
@@ -86,6 +85,14 @@ $routes->post('/Admin/Pendaftar/update_pendaftar', 'Admin\Pendaftar::update_pend
 $routes->post('/Admin/Pendaftar/delete_pendaftar', 'Admin\Pendaftar::delete_pendaftar');
 $routes->get('/Admin/Pendaftar/cek_nama/(:any)', 'Admin\Pendaftar::cek_nama/$1');
 $routes->get('/Admin/Pendaftar/data_edit/(:any)', 'Admin\Pendaftar::data_edit/$1');
+
+// admin jadwal
+$routes->get('/Admin/Jadwal', 'Admin\Jadwal::index');
+$routes->post('/Admin/Jadwal/add_jadwal', 'Admin\Jadwal::add_jadwal');
+$routes->post('/Admin/Jadwal/update_jadwal', 'Admin\Jadwal::update_jadwal');
+$routes->post('/Admin/Jadwal/delete_jadwal', 'Admin\Jadwal::delete_jadwal');
+$routes->get('/Admin/Jadwal/cek_nama/(:any)', 'Admin\Jadwal::cek_nama/$1');
+$routes->get('/Admin/Jadwal/data_edit/(:any)', 'Admin\Jadwal::data_edit/$1');
 
 /*
  * --------------------------------------------------------------------

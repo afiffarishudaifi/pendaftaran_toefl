@@ -100,21 +100,12 @@ $session = session();
 
         	$.getJSON('<?php echo base_url('Admin/Admin/data_edit'); ?>' + '/' + <?= $session->get('id_login'); ?>, {},
             function(json) {
-                $('#id_admin').val(json.id_admin);
-                $('#edit_username').val(json.username_admin);
+                $('#idadmin').val(json.idadmin);
+                $('#edit_username').val(json.username);
                 $('#edit_nama').val(json.nama_admin);
-                $('#edit_email').val(json.email_admin);
-                $('#edit_no_telp').val(json.no_telp_admin);
-                $('#edit_status').val(json.status_admin);
-
-                $('#edit_jabatan').append('<option selected value="' + json.id_jabatan + '">' + json.nama_jabatan +
-                    '</option>');
-                $('#edit_jabatan').select2('data', {
-                    id: json.id_jabatan,
-                    text: json.nama_jabatan
-                });
-                $('#edit_jabatan').trigger('change');
-
+                $('#edit_email').val(json.email);
+                $('#edit_no_telp').val(json.notelp);
+                $('#edit_alamat').val(json.alamat);
             });
 
 
