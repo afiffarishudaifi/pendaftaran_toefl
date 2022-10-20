@@ -51,12 +51,11 @@
 		<table width="625" border="1">
             <tr>
                 <th style="text-align: center;">No</th>
-                <th style="text-align: center;">Peserta</th>
-                <th style="text-align: center;">Nama Jobdesk</th>
-                <th style="text-align: center;">Deskripsi</th>
-                <th style="text-align: center;">Mulai</th>
-                <th style="text-align: center;">Selesai</th>
-                <th style="text-align: center;">Status</th>
+                <th style="text-align: center;">Nama Jadwal</th>
+                <th style="text-align: center;">Nama Peserta</th>
+                <th style="text-align: center;">Email</th>
+                <th style="text-align: center;">Waktu Mulai</th>
+                <th style="text-align: center;">Waktu Selesai</th>
             </tr>
         	<?php
             $no = 1;
@@ -64,12 +63,11 @@
             ?>
             <tr>
                 <td width="1%" style="text-align: center;"><?= $no++; ?></td>
-                <td><?= $item['nama_siswa']; ?></td>
-                <td style="text-align: center;"><?= $item['nama_jobdesk']; ?></td>
-                <td style="text-align: center;"><?= $item['deskripsi']; ?></td>
-                <td style="text-align: center;"><?= $item['waktu_mulai']; ?></td>
-                <td style="text-align: center;"><?= $item['waktu_selesai']; ?></td>
-                <td style="text-align: center;"><?= $item['status_jobdesk']; ?></td>
+                <td style="text-align: center;"><?= $item['nama_jadwal']; ?></td>
+                <td style="text-align: center;"><?= $item['nama_pendaftar']; ?></td>
+                <td style="text-align: center;"><?= $item['email']; ?></td>
+                <td style="text-align: center;"><?= $item['tanggal_mulai_pelaksanaan']; ?></td>
+                <td style="text-align: center;"><?= $item['tanggal_selesai_pelaksanaan']; ?></td>
             </tr>
             <?php } ?>
 		</table>

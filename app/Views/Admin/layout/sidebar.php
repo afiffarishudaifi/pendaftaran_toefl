@@ -21,7 +21,7 @@ $session = session();
                                             if (
                                               $uri->getSegment(2) == 'Admin' ||
                                               $uri->getSegment(2) == 'Pendaftar' || $uri->getSegment(2) == 'Periode' ||
-                                              $uri->getSegment(2) == 'Jenis' ||  $uri->getSegment(2) == 'Peserta'
+                                              $uri->getSegment(2) == 'Jenis' ||  $uri->getSegment(2) == 'Jadwal'
                                             ) {
                                               echo "active";
                                             } ?>">
@@ -64,66 +64,38 @@ $session = session();
                 </a>
               </li>
               <li class="site-menu-item <?php
-                                        if ($uri->getSegment(2) == 'Peserta') {
+                                        if ($uri->getSegment(2) == 'Jadwal') {
                                           echo "active";
                                         } ?>">
-                <a class="animsition-link" href="<?= base_url('Admin/Peserta'); ?>">
-                  <span class="site-menu-title">Peserta Magang</span>
+                <a class="animsition-link" href="<?= base_url('Admin/Jadwal'); ?>">
+                  <span class="site-menu-title">Jadwal Ujian</span>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="site-menu-category">Kegiatan Magang</li>
+          <li class="site-menu-category">Kegiatan Pendaftaran</li>
           <li class="site-menu-item has-sub <?php
-                                            if ($uri->getSegment(2) == 'Timeline') {
+                                            if ($uri->getSegment(2) == 'Test') {
                                               echo "active";
                                             } ?>">
-            <a href="<?= base_url('Admin/Timeline'); ?>">
+            <a href="<?= base_url('Admin/Test'); ?>">
               <i class="site-menu-icon md-calendar" aria-hidden="true"></i>
-              <span class="site-menu-title">Timeline Peserta</span>
+              <span class="site-menu-title">Jadwal Toefl</span>
             </a>
           </li>
           <li class="site-menu-item has-sub <?php
-                                            if ($uri->getSegment(2) == 'PengajuanMagang') {
+                                            if ($uri->getSegment(2) == 'RiwayatTest') {
                                               echo "active";
                                             } ?>">
-            <a href="<?= base_url('Admin/PengajuanMagang'); ?>">
-              <i class="site-menu-icon md-notifications-none" aria-hidden="true"></i>
-              <span class="site-menu-title">Pengajuan Magang</span>
-            </a>
-          </li>
-          <li class="site-menu-item has-sub <?php
-                                            if ($uri->getSegment(2) == 'Absen') {
-                                              echo "active";
-                                            } ?>">
-            <a href="<?= base_url('Admin/Absen'); ?>">
-              <i class="site-menu-icon md-notifications" aria-hidden="true"></i>
-              <span class="site-menu-title">Pengajuan Absensi</span>
-            </a>
-          </li>
-          <li class="site-menu-item has-sub <?php
-                                            if ($uri->getSegment(2) == 'Nilai') {
-                                              echo "active";
-                                            } ?>">
-            <a href="<?= base_url('Admin/Nilai'); ?>">
+            <a href="<?= base_url('Admin/RiwayatTest'); ?>">
               <i class="site-menu-icon md-border-color" aria-hidden="true"></i>
-              <span class="site-menu-title">Penilaian Magang</span>
-            </a>
-          </li>
-          <li class="site-menu-item has-sub <?php
-                                            if ($uri->getSegment(2) == 'JobdeskPeserta') {
-                                              echo "active";
-                                            } ?>">
-            <a href="<?= base_url('Admin/JobdeskPeserta'); ?>">
-              <i class="site-menu-icon md-comment-alt-text" aria-hidden="true"></i>
-              <span class="site-menu-title">Job Deksripsi</span>
+              <span class="site-menu-title">Riwayat Toefl</span>
             </a>
           </li>
           <li class="site-menu-category">LAPORAN</li>
           <li class="site-menu-item has-sub <?php
                                             if (
-                                              $uri->getSegment(2) == 'LaporanPeserta' || $uri->getSegment(2) == 'LaporanAbsensi' ||
-                                              $uri->getSegment(2) == 'LaporanPenilaian'
+                                              $uri->getSegment(2) == 'LaporanToefl'
                                             ) {
                                               echo "active";
                                             } ?>">
@@ -134,47 +106,14 @@ $session = session();
             </a>
             <ul class="site-menu-sub">
               <li class="site-menu-item <?php
-                                        if ($uri->getSegment(2) == 'LaporanPeserta') {
+                                        if ($uri->getSegment(2) == 'LaporanToefl') {
                                           echo "active";
                                         } ?>">
-                <a class="animsition-link" href="<?= base_url('Admin/LaporanPeserta'); ?>">
-                  <span class="site-menu-title">Peserta Magang</span>
-                </a>
-              </li>
-              <li class="site-menu-item <?php
-                                        if ($uri->getSegment(2) == 'LaporanAbsensi') {
-                                          echo "active";
-                                        } ?>">
-                <a class="animsition-link" href="<?= base_url('Admin/LaporanAbsensi'); ?>">
-                  <span class="site-menu-title">Absensi Magang</span>
-                </a>
-              </li>
-              <li class="site-menu-item <?php
-                                        if ($uri->getSegment(2) == 'LaporanPenilaian') {
-                                          echo "active";
-                                        } ?>">
-                <a class="animsition-link" href="<?= base_url('Admin/LaporanPenilaian'); ?>">
-                  <span class="site-menu-title">Penilaian Magang</span>
-                </a>
-              </li>
-              <li class="site-menu-item <?php
-                                        if ($uri->getSegment(2) == 'LaporanJobdesk') {
-                                          echo "active";
-                                        } ?>">
-                <a class="animsition-link" href="<?= base_url('Admin/LaporanJobdesk'); ?>">
-                  <span class="site-menu-title">Jobdesk Magang</span>
+                <a class="animsition-link" href="<?= base_url('Admin/LaporanToefl'); ?>">
+                  <span class="site-menu-title">Pelaksanaan Toefl</span>
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="site-menu-item <?php
-                                    if ($uri->getSegment(2) == 'Profil') {
-                                      echo "active";
-                                    } ?>">
-            <a class="animsition-link" href="<?= base_url('Admin/Profil'); ?>">
-              <i class="site-menu-icon md-pin-drop" aria-hidden="true"></i>
-              <span class="site-menu-title">Pengaturan Profil</span>
-            </a>
           </li>
         </ul>
       </div>

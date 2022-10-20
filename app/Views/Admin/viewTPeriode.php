@@ -95,6 +95,14 @@
                             <span class="text-danger" id="error_nama"></span>
                         </div>
 
+                        <div class="form-group form-material">
+                            <label class="form-control-label">Status Valid</label>
+                            <select name="input_valid" class="form-control" id="input_valid" required>
+                                <option value="1" selected="">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-secondary" id="batal_add"
@@ -129,6 +137,14 @@
                             <input type="text" class="form-control" id="edit_nama" name="edit_nama"
                                 data-parsley-required="true" placeholder="Masukkan Nama Periode" autocomplete="off" />
                             <span class="text-danger" id="error_edit_nama"></span>
+                        </div>
+
+                        <div class="form-group form-material">
+                            <label class="form-control-label">Status Valid</label>
+                            <select name="edit_valid" class="form-control" id="edit_valid" required>
+                                <option value="1" selected="">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -250,6 +266,11 @@
             function(json) {
                 $('#idperiode').val(json.idperiode);
                 $('#edit_nama').val(json.nama_periode);
+                if(json.valid == 1) {
+                    document.getElementById("edit_valid").selectedIndex = 0;
+                } else {
+                    document.getElementById("edit_valid").selectedIndex = 1;
+                }
             });
     }
     </script>

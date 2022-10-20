@@ -12,7 +12,6 @@
           <i class="icon md-more" aria-hidden="true"></i>
         </button>
         <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
-          <img class="navbar-brand-logo" src="<?= base_url() ?>/docs/themeforest/base/assets/images/logo.png" title="Pendaftaran Toefl Unipma">
           <span class="navbar-brand-text hidden-xs-down"> Pendaftaran Toefl Unipma</span>
         </div>
         <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"

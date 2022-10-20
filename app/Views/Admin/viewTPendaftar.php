@@ -383,7 +383,7 @@
                     $("#foto_lama").attr("src", "<?= base_url() . '/' ?>" + json.foto);
                 } else {
                     $("#foto_lama").attr("src", "<?= base_url() . '/' ?>" + "docs/img/img_siswa/noimage.jpg");
-
+                }
             });
     }
     </script>

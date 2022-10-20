@@ -5,7 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\Model_jadwal;
 
-class Peserta extends BaseController
+class Jadwal extends BaseController
 {
 
     protected $Model_jadwal;
@@ -29,19 +29,15 @@ class Peserta extends BaseController
         
         $model = new Model_jadwal();
         $jadwal = $model->view_data()->getResultArray();
-        $periode = $model->data_periode()->getResultArray();
-        $jenis = $model->data_jenis()->getResultArray();
 
         $data = [
             'judul' => 'Tabel Jadwal',
-            'jadwal' => $jadwal,
-            'periode' => $periode,
-            'jenis' => $jenis
+            'jadwal' => $jadwal
         ];
         return view('Admin/viewTJadwal', $data);
     }
 
-    public function add_siswa()
+    public function add_jadwal()
     {
         $session = session();
 
@@ -61,13 +57,13 @@ class Peserta extends BaseController
         return redirect()->to(base_url('Admin/Jadwal'));
     }
 
-    public function update_siswa()
+    public function update_jadwal()
     {
         $session = session();
         $encrypter = \Config\Services::encrypter();
         $model = new Model_jadwal();
         
-        $id = $this->request->getPost('id_siswa');
+        $id = $this->request->getPost('idjadwal');
         
         $data = array(
             'idjenis'     => $this->request->getPost('edit_jenis'),
@@ -84,7 +80,7 @@ class Peserta extends BaseController
         return redirect()->to(base_url('Admin/Jadwal'));
     }
 
-    public function delete_siswa()
+    public function delete_jadwal()
     {
         $session = session();
         $model = new Model_jadwal();
@@ -113,7 +109,7 @@ class Peserta extends BaseController
         $data['results'] = array();
         foreach ($respon as $value) :
             $isi['idjadwal'] = $value['idjadwal'];
-            $isi['idjneis'] = $value['idjneis'];
+            $isi['idjenis'] = $value['idjenis'];
             $isi['nama_jenis'] = $value['nama_jenis'];
             $isi['idperiode'] = $value['idperiode'];
             $isi['nama_periode'] = $value['nama_periode'];

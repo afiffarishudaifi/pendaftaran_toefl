@@ -15,8 +15,8 @@
         <div class="page-header">
             <h1 class="page-title"><?= $judul; ?></h1>
             <div class="page-header-actions">
-                <button class="btn btn-sm btn-primary btn-round" data-toggle="modal" data-target="#addModal"><i
-                        class="fa fa-plus"></i> Tambah Data</button>
+                <!-- <button class="btn btn-sm btn-primary btn-round" data-toggle="modal" data-target="#addModal"><i
+                        class="fa fa-plus"></i> Tambah Data</button> -->
             </div>
         </div>
 
@@ -62,12 +62,7 @@
                                 <td><?= $item['tanggal_mulai_pelaksanaan']; ?> s/d <?= $item['tanggal_selesai_pelaksanaan']; ?></td>
                                 <td>
                                     <center>
-                                        <a href="" data-toggle="modal" data-toggle="modal" data-target="#updateModal"
-                                            name="btn-edit" onclick="detail_edit(<?= $item['idjadwal']; ?>)"
-                                            class="btn btn-sm btn-edit btn-warning">Edit</i></a>
-                                        <a href="" class="btn btn-sm btn-delete btn-danger"
-                                            onclick="Hapus(<?= $item['idjadwal']; ?>)" data-toggle="modal"
-                                            data-target="#deleteModal" data-id="<?= $item['idjadwal']; ?>">Hapus</a>
+                                        <a href="<?= base_url('Admin/Test/detail_test' . '/' . $item['idjadwal']) ?>" name="btn-edit" class="btn btn-sm btn-edit btn-info">Detail</i></a>
                                     </center>
                                 </td>
                             </tr>
@@ -172,7 +167,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Ubah Data Siswa </h5>
+                        <h5 class="modal-title">Ubah Data Jadwal </h5>
                         <button type="reset" class="close" data-dismiss="modal" id="batal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -476,11 +471,11 @@
                 });
                 $('#edit_jenis').trigger('change');
 
-                $('#edit_periode').append('<option selected value="' + json.idperiode + '">' + json.nama_periode +
+                $('#edit_periode').append('<option selected value="' + json.idperiode + '">' + json.namaperiode +
                     '</option>');
                 $('#edit_periode').select2('data', {
                     id: json.idperiode,
-                    text: json.nama_periode
+                    text: json.namaperiode
                 });
                 $('#edit_periode').trigger('change');
 

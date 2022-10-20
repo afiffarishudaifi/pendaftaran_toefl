@@ -40,7 +40,8 @@ class Periode extends BaseController
     {
         $session = session();
         $data = array(
-            'nama_periode'     => $this->request->getPost('input_nama')
+            'nama_periode'     => $this->request->getPost('input_nama'),
+            'valid'     => $this->request->getPost('input_valid')
         );
         $model = new Model_periode();
         $model->add_data($data);
@@ -55,7 +56,8 @@ class Periode extends BaseController
         
         $id = $this->request->getPost('idperiode');
         $data = array(
-            'nama_periode'     => $this->request->getPost('edit_nama')
+            'nama_periode'     => $this->request->getPost('edit_nama'),
+            'valid'     => $this->request->getPost('edit_valid')
         );
 
         $model->update_data($data, $id);
@@ -96,6 +98,7 @@ class Periode extends BaseController
         foreach ($respon as $value) :
             $isi['idperiode'] = $value['idperiode'];
             $isi['nama_periode'] = $value['nama_periode'];
+            $isi['valid'] = $value['valid'];
         endforeach;
         echo json_encode($isi);
     }

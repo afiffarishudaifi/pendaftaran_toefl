@@ -28,7 +28,7 @@
                     <h3 class="panel-title"><?= $judul; ?></h3>
                 </header>
                 <div class="panel-body">
-                    <form method="POST" action="<?= base_url('Admin/LaporanAbsensi/data_cetak') ?>" style="padding-bottom: 20px;">
+                    <form method="POST" action="<?= base_url('Admin/LaporanToefl/data_cetak') ?>" style="padding-bottom: 20px;">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="input-group">
@@ -40,7 +40,7 @@
                                     <input type="text" class="form-control float-right" id="tanggal" name="tanggal">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -49,13 +49,11 @@
                                     </div>
                                     <select name="input_status" class="form-control float-right" id="input_status" onchange="ganti(this.value)">
                                         <option value="null" selected="">Pilih Status</option>
-                                        <option value="Hadir">Hadir</option>
-                                        <option value="Izin">Izin</option>
-                                        <option value="Sakit">Sakit</option>
-                                        <option value="Bolos">Bolos</option>
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Tidak Aktif</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-2">
                                 <button class="btn btn-sm btn-success"><span class="fa fa-print"></span> Cetak</button>
                             </div>
@@ -64,11 +62,11 @@
                     <table class="table table-hover dataTable table-striped w-full" id="exampleTableSearch table">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">Nama Peserta</th>
-                                <th style="text-align: center;">Status Absen</th>
-                                <th style="text-align: center;">Keterangan</th>
-                                <th style="text-align: center;">Konfirmasi Absen</th>
-                                <th style="text-align: center;">Waktu Absen</th>
+                                <th>Nama Jadwal</th>
+                                <th>Nama Pendaftar</th>
+                                <th>Email</th>
+                                <th>Waktu Mulai</th>
+                                <th>Waktu Selesai</th>
                             </tr>
                         </thead>
                     </table>
@@ -92,7 +90,7 @@
             }
         });
         function ganti(status) {
-            $('.table').DataTable().ajax.url('<?= base_url() ?>/Admin/LaporanAbsensi/data/' + $('#tanggal').val() + '/' + status).load();
+            $('.table').DataTable().ajax.url('<?= base_url() ?>/Admin/LaporanToefl/data/' + $('#tanggal').val()).load();
         };
 
         $(function() {            
@@ -100,23 +98,23 @@
             $('.table').DataTable({
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "ajax": {
-                    "url": "<?= base_url() ?>/Admin/LaporanAbsensi/data/" + $('#tanggal').val() + '/' + $('#input_status').val(),
+                    "url": "<?= base_url() ?>/Admin/LaporanToefl/data/" + $('#tanggal').val(),
                     "dataSrc": ""
                 },
                 "columns": [{
-                        "data": "nama_siswa"
+                        "data": "nama_jadwal"
                     },
                     {
-                        "data": "status_absen"
+                        "data": "nama_pendaftar"
                     },
                     {
-                        "data": "keterangan"
+                        "data": "email"
                     },
                     {
-                        "data": "konfirmasi_absen"
+                        "data": "tanggal_mulai_pelaksanaan"
                     },
                     {
-                        "data": "waktu_absen"
+                        "data": "tanggal_selesai_pelaksanaan"
                     }
                 ]
             });
@@ -125,7 +123,7 @@
 
         $('#tanggal').on('apply.daterangepicker', function(ev, picker) {
             var tanggal = picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY');
-            $('.table').DataTable().ajax.url('<?= base_url() ?>/Admin/LaporanAbsensi/data/' + tanggal + '/' + $('#input_status').val()).load();
+            $('.table').DataTable().ajax.url('<?= base_url() ?>/Admin/LaporanToefl/data/' + tanggal).load();
         });
     </script>
 

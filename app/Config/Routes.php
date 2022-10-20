@@ -44,11 +44,8 @@ $routes->post('/Login/loginSistemAdmin', 'Login::loginSistemAdmin');
 $routes->post('/Login/simpanMahasiswa', 'Login::simpanMahasiswa');
 $routes->get('/Login/loginAdmin', 'Login::loginAdmin');
 
-
-
 // bagian mahasiswa
 $routes->get('/Mahasiswa/Dashboard', 'Login::registrasiMahasiswa');
-
 
 
 // bagian admin
@@ -93,6 +90,34 @@ $routes->post('/Admin/Jadwal/update_jadwal', 'Admin\Jadwal::update_jadwal');
 $routes->post('/Admin/Jadwal/delete_jadwal', 'Admin\Jadwal::delete_jadwal');
 $routes->get('/Admin/Jadwal/cek_nama/(:any)', 'Admin\Jadwal::cek_nama/$1');
 $routes->get('/Admin/Jadwal/data_edit/(:any)', 'Admin\Jadwal::data_edit/$1');
+$routes->post('/Admin/Jadwal/data_jenis', 'Admin\Jadwal::data_jenis');
+$routes->post('/Admin/Jadwal/data_periode', 'Admin\Jadwal::data_periode');
+
+// admin test
+$routes->get('/Admin/Test', 'Admin\Test::index');
+$routes->post('/Admin/Test/add_test', 'Admin\Test::add_test');
+$routes->post('/Admin/Test/update_test', 'Admin\Test::update_test');
+$routes->post('/Admin/Test/delete_test', 'Admin\Test::delete_test');
+$routes->get('/Admin/Test/cek_nama/(:any)', 'Admin\Test::cek_nama/$1');
+$routes->get('/Admin/Test/data_edit/(:any)', 'Admin\Test::data_edit/$1');
+$routes->get('/Admin/Test/detail_test/(:any)', 'Admin\Test::detail_test/$1');
+$routes->post('/Admin/Test/data_pendaftar', 'Admin\Test::data_pendaftar');
+
+// admin riwayat test
+$routes->get('/Admin/RiwayatTest', 'Admin\RiwayatTest::index');
+$routes->post('/Admin/RiwayatTest/add_test', 'Admin\RiwayatTest::add_test');
+$routes->post('/Admin/RiwayatTest/update_test', 'Admin\RiwayatTest::update_test');
+$routes->post('/Admin/RiwayatTest/delete_test', 'Admin\RiwayatTest::delete_test');
+$routes->get('/Admin/RiwayatTest/cek_nama/(:any)', 'Admin\RiwayatTest::cek_nama/$1');
+$routes->get('/Admin/RiwayatTest/data_edit/(:any)', 'Admin\RiwayatTest::data_edit/$1');
+$routes->get('/Admin/RiwayatTest/detail_test/(:any)', 'Admin\RiwayatTest::detail_test/$1');
+$routes->post('/Admin/RiwayatTest/data_pendaftar', 'Admin\RiwayatTest::data_pendaftar');
+
+// admin laporan
+$routes->get('/Admin/LaporanToefl', 'Admin\LaporanToefl::index');
+$routes->get('Admin/LaporanToefl/data/(:any)', 'Admin\LaporanToefl::data/$1');
+$routes->post('Admin/LaporanToefl/data_cetak', 'Admin\LaporanToefl::data_cetak');
+$routes->post('/Admin/LaporanToefl/data_jadwal', 'Admin\LaporanToefl::data_jadwal');
 
 /*
  * --------------------------------------------------------------------
