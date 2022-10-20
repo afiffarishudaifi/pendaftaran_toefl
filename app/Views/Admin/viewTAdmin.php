@@ -306,38 +306,30 @@
             $('#form_edit')[0].reset();
             $("#input_nama").val('');
             $("#input_username").val('');
-            $("#input_jabatan").val('');
             $("#input_password").val('');
             $("#input_password_konfirmasi").val('');
             $("#input_email").val('');
             $("#input_no_telp").val('');
-            $("#input_foto").val('');
-            $("#input_status").val('');
         });
 
         $('#batal_add').on('click', function() {
             $('#form_add')[0].reset();
             $("#input_nama").val('');
             $("#input_username").val('');
-            $("#input_jabatan").val('');
             $("#input_password").val('');
             $("#input_password_konfirmasi").val('');
             $("#input_email").val('');
             $("#input_no_telp").val('');
-            $("#input_foto").val('');
-            $("#input_status").val('');
         });
 
         $('#batal_up').on('click', function() {
             $('#form_edit')[0].reset();
+            $("#edit_nama").val('');
             $("#edit_username").val('');
-            $("#edit_jabatan").val('');
             $("#edit_password").val('');
             $("#edit_password_konfirmasi").val('');
             $("#edit_email").val('');
             $("#edit_no_telp").val('');
-            $("#edit_foto").val('');
-            $("#edit_alamat").val('');
         });
     })
 

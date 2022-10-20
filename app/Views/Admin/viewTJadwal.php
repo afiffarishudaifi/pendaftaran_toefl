@@ -103,7 +103,7 @@
                             <label class="form-control-label">Nama Jadwal</label>
                             <input type="text" class="form-control" id="input_nama" name="input_nama"
                                 data-parsley-required="true" placeholder="Masukkan Nama Jadwal" autocomplete="off" />
-                            <span class="text-danger" id="error_nis"></span>
+                            <span class="text-danger" id="error_nama"></span>
                         </div>
 
                         <div class="form-group form-material">
@@ -188,7 +188,7 @@
                             <label class="form-control-label">Nama Jadwal</label>
                             <input type="text" class="form-control" id="edit_nama" name="edit_nama"
                                 data-parsley-required="true" placeholder="Masukkan Nama Jadwal" autocomplete="off" />
-                            <span class="text-danger" id="error_nis"></span>
+                            <span class="text-danger" id="error_edit_nama"></span>
                         </div>
 
                         <div class="form-group form-material">
@@ -435,77 +435,56 @@
             $('#form_add')[0].reset();
             $('#form_edit')[0].reset();
             $("#input_nama").val('');
-            $("#input_username").val('');
-            $("#input_sekolah").val('');
-            $("#input_nis").val('');
-            $("#input_password").val('');
-            $("#input_password_konfirmasi").val('');
-            $("#input_email").val('');
-            $("#input_no_telp").val('');
-            $("#input_alamat").val('');
-            $("#input_jurusan").val('');
-            $("#input_foto").val('');
-            $("#input_status").val('');
+            $("#input_mulai_daftar").val('');
+            $("#input_selesai_dafter").val('');
+            $("#input_mulai_laksana").val('');
+            $("#input_selesai_laksana").val('');
         });
 
         $('#batal_add').on('click', function() {
             $('#form_add')[0].reset();
             $("#input_nama").val('');
-            $("#input_username").val('');
-            $("#input_sekolah").val('');
-            $("#input_nis").val('');
-            $("#input_password").val('');
-            $("#input_password_konfirmasi").val('');
-            $("#input_email").val('');
-            $("#input_no_telp").val('');
-            $("#input_alamat").val('');
-            $("#input_jurusan").val('');
-            $("#input_foto").val('');
-            $("#input_status").val('');
+            $("#input_mulai_daftar").val('');
+            $("#input_selesai_dafter").val('');
+            $("#input_mulai_laksana").val('');
+            $("#input_selesai_laksana").val('');
         });
 
         $('#batal_up').on('click', function() {
             $('#form_edit')[0].reset();
-            $("#edit_username").val('');
-            $("#edit_sekolah").val('');
-            $("#edit_nis").val('');
-            $("#edit_password").val('');
-            $("#edit_password_konfirmasi").val('');
-            $("#edit_email").val('');
-            $("#edit_no_telp").val('');
-            $("#edit_alamat").val('');
-            $("#edit_jurusan").val('');
-            $("#edit_foto").val('');
-            $("#edit_status").val('');
+            $("#edit_nama").val('');
+            $("#edit_mulai_daftar").val('');
+            $("#edit_selesai_dafter").val('');
+            $("#edit_mulai_laksana").val('');
+            $("#edit_selesai_laksana").val('');
         });
     })
 
     function detail_edit(isi) {
         $.getJSON('<?php echo base_url('Admin/Jadwal/data_edit'); ?>' + '/' + isi, {},
             function(json) {
-                $('#id_siswa').val(json.id_siswa);
-                $('#edit_nis').val(json.nomor_induk);
-                $('#edit_username').val(json.username_siswa);
-                $('#edit_nama').val(json.nama_siswa);
-                $('#edit_email').val(json.email_siswa);
-                $('#edit_no_telp').val(json.no_telp_siswa);
-                $('#edit_alamat').val(json.alamat_siswa);
-                $('#edit_jurusan').val(json.jurusan);
-                $('#edit_status').val(json.status);
+                $('#idjadwal').val(json.idjadwal);
+                $('#edit_nama').val(json.nama_jadwal);
+                $('#edit_mulai_daftar').val(json.tanggal_mulai_daftar);
+                $('#edit_selesai_daftar').val(json.tanggal_selesai_daftar);
+                $('#edit_mulai_laksana').val(json.tanggal_mulai_pelaksanaan);
+                $('#edit_selesai_laksana').val(json.tanggal_selesai_pelaksanaan);
 
-                if (json.foto_resmi != '' || json.foto_resmi != null) {
-                    $("#foto_lama").attr("src", "<?= base_url() . '/' ?>" + json.foto_resmi);
-                } else {
-                    $("#foto_lama").attr("src", "<?= base_url() . '/' ?>" + "docs/img/img_siswa/noimage.jpg");
-                }
-
-                $('#edit_sekolah').append('<option selected value="' + json.id_sekolah + '">' + json.nama_sekolah +
+                $('#edit_jenis').append('<option selected value="' + json.idjenis + '">' + json.nama_jenis +
                     '</option>');
-                $('#edit_sekolah').select2('data', {
-                    id: json.id_sekolah,
-                    text: json.nama_sekolah
+                $('#edit_jenis').select2('data', {
+                    id: json.idjenis,
+                    text: json.nama_jenis
                 });
-                $('#edit_sekolah').trigger('change');
+                $('#edit_jenis').trigger('change');
+
+                $('#edit_periode').append('<option selected value="' + json.idperiode + '">' + json.namaperiode +
+                    '</option>');
+                $('#edit_periode').select2('data', {
+                    id: json.idperiode,
+                    text: json.namaperiode
+                });
+                $('#edit_periode').trigger('change');
 
             });
     }
