@@ -106,11 +106,11 @@ class Login extends BaseController
                 return redirect()->to('/Mahasiswa/Dashboard');
             } else {
                 $session->setFlashdata('msg', 'Password Tidak Sesuai');
-                return redirect()->to('/Login');
+                return redirect()->to(base_url('/'));
             }
         } else {
             $session->setFlashdata('msg', 'NIM Tidak di Temukan');
-            return redirect()->to('/Login');
+            return redirect()->to(base_url('/'));
         }
     }
 
@@ -181,6 +181,6 @@ class Login extends BaseController
     {
         $session = session();
         $session->destroy();
-        return redirect()->to('/Login');
+        return redirect()->to(base_url('/'));
     }
 }

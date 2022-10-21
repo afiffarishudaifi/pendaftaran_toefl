@@ -4,21 +4,22 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Model_test extends Model
+class Model_riwayat_mahasiswa_test extends Model
 {
     protected $table = 'jadwal';
     protected $primaryKey = 'idjadwal';
 
-    public function view_data($tanggal)
+    public function view_data($idpendaftar)
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('jadwal');
-        $builder->select('jadwal.idjadwal, nama_jadwal,tanggal_mulai_daftar, tanggal_selesai_daftar, tanggal_mulai_pelaksanaan, tanggal_selesai_pelaksanaan, periode.idperiode, nama_periode, jenis.idjenis, nama_jenis');
+        $builder->select('jadwal.idjadwal, tes.idtes,nama_jadwal, tanggal_mulai_pelaksanaan, tanggal_selesai_pelaksanaan, periode.idperiode, nama_periode, jenis.idjenis, nama_jenis, nama_pendaftar');
         $builder->join('periode','periode.idperiode = jadwal.idperiode');
         $builder->join('jenis','jenis.idjenis = jadwal.idjenis');
-        // $builder->join('tes','tes.idjadwal = jadwal.idjadwal');
-        // $builder->join('pendaftar','pendaftar.idpendaftar = tes.idpendaftar');
-        $builder->where('jadwal.tanggal_selesai_pelaksanaan >',  $tanggal);
+        $builder->join('tes','tes.idjadwal = jadwal.idjadwal');
+        $builder->join('pendaftar','pendaftar.idpendaftar = tes.idpendaftar');
+        $builder->where('tes.idpendaftar', $idpendaftar);
+        $builder->where('jadwal.tanggal_selesai_pelaksanaan <', date('Y-m-d'));
         return $builder->get();
     }
     
@@ -46,7 +47,7 @@ class Model_test extends Model
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('tes');
-        $builder->select('idtes, nama_pendaftar, tes.idpendaftar, bukti_bayar, valid');
+        $builder->select('idtes, nama_pendaftar, tes.idpendaftar, bukti_bayar, valid, sertifikat');
         $builder->join('pendaftar','pendaftar.idpendaftar = tes.idpendaftar');
         $builder->where('idtes', $id);
         return $builder->get();

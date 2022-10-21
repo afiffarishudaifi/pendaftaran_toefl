@@ -181,7 +181,6 @@ class Pendaftar extends BaseController
         $model = new Model_pendaftar();
 
         $data_pendaftar = $model->detail_data($idpendaftar)->getResultArray();
-        dd($data_pendaftar);
         $respon = json_decode(json_encode($data_pendaftar), true);
         $data['results'] = array();
         foreach ($respon as $value) :

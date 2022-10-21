@@ -43,10 +43,31 @@ $routes->post('/Login/loginSistem', 'Login::loginSistem');
 $routes->post('/Login/loginSistemAdmin', 'Login::loginSistemAdmin');
 $routes->post('/Login/simpanMahasiswa', 'Login::simpanMahasiswa');
 $routes->get('/Login/loginAdmin', 'Login::loginAdmin');
+$routes->get('/Login/logout', 'Login::logout');
 
 // bagian mahasiswa
-$routes->get('/Mahasiswa/Dashboard', 'Login::registrasiMahasiswa');
+$routes->get('/Mahasiswa/Dashboard', 'Mahasiswa\Dashboard::index');
 
+// mahasiswa test
+$routes->get('/Mahasiswa/Test', 'Mahasiswa\Test::index');
+$routes->post('/Mahasiswa/Test/add_test', 'Mahasiswa\Test::add_test');
+$routes->post('/Mahasiswa/Test/update_test', 'Mahasiswa\Test::update_test');
+$routes->post('/Mahasiswa/Test/delete_test', 'Mahasiswa\Test::delete_test');
+$routes->get('/Mahasiswa/Test/cek_nama/(:any)', 'Mahasiswa\Test::cek_nama/$1');
+$routes->get('/Mahasiswa/Test/data_edit/(:any)', 'Mahasiswa\Test::data_edit/$1');
+$routes->get('/Mahasiswa/Test/detail_test/(:any)', 'Mahasiswa\Test::detail_test/$1');
+$routes->post('/Mahasiswa/Test/data_pendaftar', 'Mahasiswa\Test::data_pendaftar');
+
+// mahasiswa riwayat test
+$routes->get('/Mahasiswa/RiwayatTest', 'Mahasiswa\RiwayatTest::index');
+$routes->post('/Mahasiswa/RiwayatTest/add_test', 'Mahasiswa\RiwayatTest::add_test');
+$routes->post('/Mahasiswa/RiwayatTest/update_test', 'Mahasiswa\RiwayatTest::update_test');
+$routes->post('/Mahasiswa/RiwayatTest/delete_test', 'Mahasiswa\RiwayatTest::delete_test');
+$routes->get('/Mahasiswa/RiwayatTest/cek_nama/(:any)', 'Mahasiswa\RiwayatTest::cek_nama/$1');
+$routes->get('/Mahasiswa/RiwayatTest/data_edit/(:any)', 'Mahasiswa\RiwayatTest::data_edit/$1');
+$routes->get('/Mahasiswa/RiwayatTest/detail_test/(:any)', 'Mahasiswa\RiwayatTest::detail_test/$1');
+$routes->post('/Mahasiswa/RiwayatTest/data_pendaftar', 'Mahasiswa\RiwayatTest::data_pendaftar');
+$routes->post('/Mahasiswa/RiwayatTest/upload_sertifikat', 'Mahasiswa\RiwayatTest::upload_sertifikat');
 
 // bagian admin
 $routes->get('/Admin/Dashboard', 'Admin\Dashboard::index');

@@ -163,9 +163,7 @@ class Jadwal extends BaseController
         $response['data'] = $jenis;
 
         return $this->response->setJSON($response);
-    }
-
-    
+    }    
 
     public function data_periode()
     {
