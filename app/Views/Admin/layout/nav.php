@@ -53,7 +53,7 @@
               <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
                 data-animation="scale-up" role="button">
                 <span class="avatar avatar-online">
-                  <img src="<?= base_url() . '/' . $session->get('foto'); ?>" alt="...">
+                  <img src="<?= base_url() ?>/docs/themeforest/base/assets/images/favicon.ico" alt="...">
                   <i></i>
                 </span>
               </a>

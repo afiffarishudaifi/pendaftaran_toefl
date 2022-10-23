@@ -52,7 +52,7 @@ class Model_pendaftar extends Model
         $db      = \Config\Database::connect();
         $builder = $db->table('pendaftar');
         $builder->select('idpendaftar');
-        $builder->where('nomor_induk', $nis);
+        $builder->where('nim', $nis);
         return $builder->get();
     }
 

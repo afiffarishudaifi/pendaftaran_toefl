@@ -47,6 +47,9 @@ $routes->get('/Login/logout', 'Login::logout');
 
 // bagian mahasiswa
 $routes->get('/Mahasiswa/Dashboard', 'Mahasiswa\Dashboard::index');
+$routes->get('/Mahasiswa/Pengaturan', 'Mahasiswa\Pengaturan::index');
+$routes->get('/Mahasiswa/Pengaturan/data_edit/(:any)', 'Mahasiswa\Pengaturan::data_edit/$1');
+$routes->post('/Mahasiswa/Pengaturan/update_pendaftar', 'Mahasiswa\Pengaturan::update_pendaftar');
 
 // mahasiswa test
 $routes->get('/Mahasiswa/Test', 'Mahasiswa\Test::index');
@@ -71,6 +74,8 @@ $routes->post('/Mahasiswa/RiwayatTest/upload_sertifikat', 'Mahasiswa\RiwayatTest
 
 // bagian admin
 $routes->get('/Admin/Dashboard', 'Admin\Dashboard::index');
+$routes->get('/Admin/Pengaturan', 'Admin\Pengaturan::index');
+$routes->post('/Admin/Pengaturan/update_admin', 'Admin\Pengaturan::update_admin');
 
 // admin admin
 $routes->get('/Admin/Admin', 'Admin\Admin::index');

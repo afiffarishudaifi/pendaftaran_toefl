@@ -33,6 +33,7 @@
                             <tr>
                                 <th style="text-align: center;">No</th>
                                 <th style="text-align: center;">Nama Jenis</th>
+                                <th style="text-align: center;">Status</th>
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
@@ -40,6 +41,7 @@
                             <tr>
                                 <th style="text-align: center;">No</th>
                                 <th style="text-align: center;">Nama Jenis</th>
+                                <th style="text-align: center;">Status</th>
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </tfoot>
@@ -51,6 +53,15 @@
                             <tr>
                                 <td width="1%"><?= $no++; ?></td>
                                 <td><?= $item['nama_jenis']; ?></td>
+                                <td>
+                                    <?php
+                                        if($item['aktif']==1) {
+                                            echo "Aktif";
+                                        } else {
+                                            echo "Tidak Aktif";
+                                        }
+                                    ?>
+                                </td>
                                 <td>
                                     <center>
                                         <a href="" data-toggle="modal" data-toggle="modal" data-target="#updateModal"
@@ -74,7 +85,7 @@
 
     <!-- Start Modal Add Class-->
     <form action="<?php echo base_url('Admin/Jenis/add_jenis'); ?>" method="post" id="form_add"
-        data-parsley-validate="true" autocomplete="off">
+        data-parsley-aktifate="true" autocomplete="off">
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <?= csrf_field(); ?>
@@ -96,8 +107,8 @@
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Status Valid</label>
-                            <select name="input_valid" class="form-control" id="input_valid" required>
+                            <label class="form-control-label">Status aktif</label>
+                            <select name="input_aktif" class="form-control" id="input_aktif" required>
                                 <option value="1" selected="">Aktif</option>
                                 <option value="0">Tidak Aktif</option>
                             </select>
@@ -117,7 +128,7 @@
 
     <!-- Modal Edit Class-->
     <form action="<?php echo base_url('Admin/Jenis/update_jenis'); ?>" method="post" id="form_edit"
-        data-parsley-validate="true" autocomplete="off">
+        data-parsley-aktifate="true" autocomplete="off">
         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <?= csrf_field(); ?>
@@ -140,8 +151,8 @@
                         </div>
 
                         <div class="form-group form-material">
-                            <label class="form-control-label">Status Valid</label>
-                            <select name="edit_valid" class="form-control" id="edit_valid" required>
+                            <label class="form-control-label">Status aktif</label>
+                            <select name="edit_aktif" class="form-control" id="edit_aktif" required>
                                 <option value="1" selected="">Aktif</option>
                                 <option value="0">Tidak Aktif</option>
                             </select>
@@ -266,10 +277,10 @@
             function(json) {
                 $('#idjenis').val(json.idjenis);
                 $('#edit_nama').val(json.nama_jenis);
-                if(json.valid == 1) {
-                    document.getElementById("edit_valid").selectedIndex = 0;
+                if(json.aktif == 1) {
+                    document.getElementById("edit_aktif").selectedIndex = 0;
                 } else {
-                    document.getElementById("edit_valid").selectedIndex = 1;
+                    document.getElementById("edit_aktif").selectedIndex = 1;
                 }
             });
     }

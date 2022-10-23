@@ -82,7 +82,6 @@ class Pendaftar extends BaseController
             if($this->request->getPost('edit_password') != '') {
                 $data = array(
                     'nim'     => $this->request->getPost('edit_nim'),
-                    'username'     => $this->request->getPost('edit_username'),
                     'password'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
                     'nama_pendaftar'     => $this->request->getPost('edit_nama'),
                     'email'     => $this->request->getPost('edit_email'),
@@ -93,7 +92,6 @@ class Pendaftar extends BaseController
             } else {
                 $data = array(
                     'nim'     => $this->request->getPost('edit_nim'),
-                    'username'     => $this->request->getPost('edit_username'),
                     'nama_pendaftar'     => $this->request->getPost('edit_nama'),
                     'email'     => $this->request->getPost('edit_email'),
                     'no_telp'     => $this->request->getPost('edit_no_telp'),
@@ -115,7 +113,6 @@ class Pendaftar extends BaseController
             if($this->request->getPost('edit_password') != '') {
                 $data = array(
                     'nim'     => $this->request->getPost('edit_nim'),
-                    'username'     => $this->request->getPost('edit_username'),
                     'password'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
                     'nama_pendaftar'     => $this->request->getPost('edit_nama'),
                     'email'     => $this->request->getPost('edit_email'),
@@ -125,7 +122,6 @@ class Pendaftar extends BaseController
             } else {
                 $data = array(
                     'nim'     => $this->request->getPost('edit_nim'),
-                    'username'     => $this->request->getPost('edit_username'),
                     'nama_pendaftar'     => $this->request->getPost('edit_nama'),
                     'email'     => $this->request->getPost('edit_email'),
                     'no_telp'     => $this->request->getPost('edit_no_telp'),

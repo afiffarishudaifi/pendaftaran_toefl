@@ -28,11 +28,9 @@ class Pengaturan extends BaseController
         }
         
         $model = new Model_admin();
-        $jabatan = $model->data_jabatan()->getResultArray();
 
         $data = [
-            'judul' => 'Pengaturan Akun',
-            'jabatan' => $jabatan
+            'judul' => 'Pengaturan Akun'
         ];
         return view('Admin/viewPengaturan', $data);
     }
@@ -42,75 +40,28 @@ class Pengaturan extends BaseController
         $session = session();
         $encrypter = \Config\Services::encrypter();
         $model = new Model_admin();
+        date_default_timezone_set('Asia/Jakarta');
         
-        $id = $this->request->getPost('id_admin');
-
-        $avatar      = $this->request->getFile('edit_foto');
-        if ($avatar != '') {
-            $namabaru     = $avatar->getRandomName();
-            $avatar->move('docs/img/img_admin/', $namabaru);
-
-            if($this->request->getPost('edit_password') != '') {
-	            $data = array(
-	                'id_jabatan'     => $this->request->getPost('edit_jabatan'),
-	                'username_admin'     => $this->request->getPost('edit_username'),
-	                'password_admin'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
-	                'nama_admin'     => $this->request->getPost('edit_nama'),
-	                'no_telp_admin'     => $this->request->getPost('edit_no_telp'),
-	                'foto_resmi_admin'     => "docs/img/img_admin/" . $namabaru,
-	                'status_admin'     => $this->request->getPost('edit_status'),
-	                'id_admin'     => $this->request->getPost('id_admin'),
-	                'updated_at' => date('Y-m-d H:i:s')
-	            );
-	        } else {
-	        	$data = array(
-	                'id_jabatan'     => $this->request->getPost('edit_jabatan'),
-	                'username_admin'     => $this->request->getPost('edit_username'),
-	                'nama_admin'     => $this->request->getPost('edit_nama'),
-	                'no_telp_admin'     => $this->request->getPost('edit_no_telp'),
-	                'foto_resmi_admin'     => "docs/img/img_admin/" . $namabaru,
-	                'status_admin'     => $this->request->getPost('edit_status'),
-	                'id_admin'     => $this->request->getPost('id_admin'),
-	                'updated_at' => date('Y-m-d H:i:s')
-	            );
-	        }
-
-            $data_foto = $model->detail_data($id)->getRowArray();
-
-            if ($data_foto != null) {
-                if ($data_foto['foto_resmi_admin'] != 'docs/img/img_admin/noimage.jpg') {
-                    if (file_exists($data_foto['foto_resmi_admin'])) {
-                        unlink($data_foto['foto_resmi_admin']);
-                    }
-                }
-            }
+        $id = $this->request->getPost('idadmin');
+        if($this->request->getPost('edit_password') != '') {
+                $data = array(
+                'username'     => $this->request->getPost('edit_username'),
+                'password'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
+                'nama_admin'     => $this->request->getPost('edit_nama'),
+                'notelp'     => $this->request->getPost('edit_no_telp'),
+                'alamat'     => $this->request->getPost('edit_alamat')
+            );
         } else {
-        	if($this->request->getPost('edit_password') != '') {
-		            $data = array(
-	                'id_jabatan'     => $this->request->getPost('edit_jabatan'),
-	                'username_admin'     => $this->request->getPost('edit_username'),
-	                'password_admin'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
-	                'nama_admin'     => $this->request->getPost('edit_nama'),
-	                'no_telp_admin'     => $this->request->getPost('edit_no_telp'),
-	                'status_admin'     => $this->request->getPost('edit_status'),
-	                'id_admin'     => $this->request->getPost('id_admin'),
-	                'updated_at' => date('Y-m-d H:i:s')
-	            );
-	        } else {
-	        	$data = array(
-	                'id_jabatan'     => $this->request->getPost('edit_jabatan'),
-	                'username_admin'     => $this->request->getPost('edit_username'),
-	                'nama_admin'     => $this->request->getPost('edit_nama'),
-	                'no_telp_admin'     => $this->request->getPost('edit_no_telp'),
-	                'status_admin'     => $this->request->getPost('edit_status'),
-	                'id_admin'     => $this->request->getPost('id_admin'),
-	                'updated_at' => date('Y-m-d H:i:s')
-	            );
-	        };
-        }
+            $data = array(
+                'username'     => $this->request->getPost('edit_username'),
+                'nama_admin'     => $this->request->getPost('edit_nama'),
+                'notelp'     => $this->request->getPost('edit_no_telp'),
+                'alamat'     => $this->request->getPost('edit_alamat')
+            );
+        };
 
         $model->update_data($data, $id);
-        $session->setFlashdata('sukses', 'Data sudah berhasil diubah');
+        $session->setFlashdata('pengaturan', 'Data sudah berhasil diubah');
         return redirect()->to(base_url('Login/logout'));
     }
 }

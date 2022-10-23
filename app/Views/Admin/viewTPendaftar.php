@@ -281,51 +281,6 @@
     };
 
     $(function() {
-        $("#input_sekolah").select2({
-            placeholder: "Pilih Sekolah",
-            theme: 'bootstrap4',
-            ajax: {
-                url: '<?php echo base_url('Admin/Pendaftar/data_sekolah'); ?>',
-                type: "post",
-                delay: 250,
-                dataType: 'json',
-                data: function(params) {
-                    return {
-                        query: params.term, // search term
-                    };
-                },
-                processResults: function(response) {
-                    return {
-                        results: response.data
-                    };
-                },
-                cache: true
-            }
-        });
-
-        $("#edit_sekolah").select2({
-            placeholder: "Pilih Sekolah",
-            theme: 'bootstrap4',
-            ajax: {
-                url: '<?php echo base_url('Admin/Pendaftar/data_sekolah'); ?>',
-                type: "post",
-                delay: 250,
-                dataType: 'json',
-                data: function(params) {
-                    return {
-                        query: params.term, // search term
-                    };
-                },
-                processResults: function(response) {
-                    return {
-                        results: response.data
-                    };
-                },
-                cache: true
-            }
-        });
-
-
         $('#batal').on('click', function() {
             $('#form_add')[0].reset();
             $('#form_edit')[0].reset();

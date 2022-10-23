@@ -41,7 +41,7 @@ class Jenis extends BaseController
         $session = session();
         $data = array(
             'nama_jenis'     => $this->request->getPost('input_nama'),
-            'valid'     => $this->request->getPost('input_valid')
+            'aktif'     => $this->request->getPost('input_aktif')
         );
         $model = new Model_jenis();
         $model->add_data($data);
@@ -57,7 +57,7 @@ class Jenis extends BaseController
         $id = $this->request->getPost('idjenis');
         $data = array(
             'nama_jenis'     => $this->request->getPost('edit_nama'),
-            'valid'     => $this->request->getPost('edit_valid')
+            'aktif'     => $this->request->getPost('edit_aktif')
         );
 
         $model->update_data($data, $id);
@@ -98,7 +98,7 @@ class Jenis extends BaseController
         foreach ($respon as $value) :
             $isi['idjenis'] = $value['idjenis'];
             $isi['nama_jenis'] = $value['nama_jenis'];
-            $isi['valid'] = $value['valid'];
+            $isi['aktif'] = $value['aktif'];
         endforeach;
         echo json_encode($isi);
     }

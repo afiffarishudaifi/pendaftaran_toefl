@@ -143,12 +143,14 @@ class Jadwal extends BaseController
             // Fetch record
             $builder->select('idjenis, nama_jenis');
             $builder->like('nama_jenis', $query, 'both');
+            $builder->where('aktif', 1);
             $query = $builder->get();
             $data = $query->getResult();
         } else {
 
             // Fetch record
             $builder->select('idjenis, nama_jenis');
+            $builder->where('aktif', 1);
             $query = $builder->get();
             $data = $query->getResult();
         }
@@ -185,6 +187,7 @@ class Jadwal extends BaseController
 
             // Fetch record
             $builder->select('idperiode, nama_periode');
+            $builder->where('aktif', 1);
             $builder->like('nama_periode', $query, 'both');
             $query = $builder->get();
             $data = $query->getResult();
@@ -192,6 +195,7 @@ class Jadwal extends BaseController
 
             // Fetch record
             $builder->select('idperiode, nama_periode');
+            $builder->where('aktif', 1);
             $query = $builder->get();
             $data = $query->getResult();
         }

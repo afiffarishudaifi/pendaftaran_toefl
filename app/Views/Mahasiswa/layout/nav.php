@@ -59,7 +59,7 @@
               </a>
               <div class="dropdown-menu" role="menu">
                 <a class="dropdown-item" disabled href="javascript:void(0)" role="menuitem"><center><b><?= $session->get('nama_login'); ?></b></center></a>
-                <a class="dropdown-item" href="<?= base_url('Peserta/Pengaturan'); ?>" role="menuitem"><i class="icon md-settings" aria-hidden="true"></i> Pengaturan</a>
+                <a class="dropdown-item" href="<?= base_url('Mahasiswa/Pengaturan'); ?>" role="menuitem"><i class="icon md-settings" aria-hidden="true"></i> Pengaturan</a>
                 <div class="dropdown-divider" role="presentation"></div>
                 <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#logoutModal" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Keluar</a>
               </div>

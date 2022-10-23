@@ -28,22 +28,20 @@ class Pengaturan extends BaseController
         }
         
         $model = new Model_pendaftar();
-        $sekolah = $model->data_sekolah()->getResultArray();
 
         $data = [
-            'judul' => 'Pengaturan Akun',
-            'sekolah' => $sekolah
+            'judul' => 'Pengaturan Akun'
         ];
         return view('Mahasiswa/viewPengaturan', $data);
     }
 
-    public function update_siswa()
+    public function update_pendaftar()
     {
         $session = session();
         $encrypter = \Config\Services::encrypter();
         $model = new Model_pendaftar();
         
-        $id = $this->request->getPost('id_siswa');
+        $id = $this->request->getPost('idpendaftar');
 
         $avatar      = $this->request->getFile('edit_foto');
         if ($avatar != '') {
@@ -52,67 +50,47 @@ class Pengaturan extends BaseController
 
             if($this->request->getPost('edit_password') != '') {
                 $data = array(
-                    'id_sekolah'     => $this->request->getPost('edit_sekolah'),
-                    'nomor_induk'     => $this->request->getPost('edit_nis'),
-                    'password_siswa'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
-                    'nama_siswa'     => $this->request->getPost('edit_nama'),
-                    'email_siswa'     => $this->request->getPost('edit_email'),
-                    'no_telp_siswa'     => $this->request->getPost('edit_no_telp'),
-                    'alamat_siswa'     => $this->request->getPost('edit_alamat'),
-                    'jurusan'     => $this->request->getPost('edit_jurusan'),
-                    'foto_resmi'     => "docs/img/img_siswa/" . $namabaru,
-                    'id_siswa'     => $this->request->getPost('id_siswa'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'password'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
+                    'nama_pendaftar'     => $this->request->getPost('edit_nama'),
+                    'email'     => $this->request->getPost('edit_email'),
+                    'no_telp'     => $this->request->getPost('edit_no_telp'),
+                    'institusi'     => $this->request->getPost('edit_institusi'),
+                    'foto'     => "docs/img/img_siswa/" . $namabaru
                 );
             } else {
                 $data = array(
-                    'id_sekolah'     => $this->request->getPost('edit_sekolah'),
-                    'nomor_induk'     => $this->request->getPost('edit_nis'),
-                    'nama_siswa'     => $this->request->getPost('edit_nama'),
-                    'email_siswa'     => $this->request->getPost('edit_email'),
-                    'no_telp_siswa'     => $this->request->getPost('edit_no_telp'),
-                    'alamat_siswa'     => $this->request->getPost('edit_alamat'),
-                    'jurusan'     => $this->request->getPost('edit_jurusan'),
-                    'foto_resmi'     => "docs/img/img_siswa/" . $namabaru,
-                    'id_siswa'     => $this->request->getPost('id_siswa'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'nama_pendaftar'     => $this->request->getPost('edit_nama'),
+                    'email'     => $this->request->getPost('edit_email'),
+                    'no_telp'     => $this->request->getPost('edit_no_telp'),
+                    'institusi'     => $this->request->getPost('edit_institusi'),
+                    'foto'     => "docs/img/img_siswa/" . $namabaru
                 );
             }
 
             $data_foto = $model->detail_data($id)->getRowArray();
 
             if ($data_foto != null) {
-                if ($data_foto['foto_resmi'] != 'docs/img/img_siswa/noimage.jpg') {
-                    if (file_exists($data_foto['foto_resmi'])) {
-                        unlink($data_foto['foto_resmi']);
+                if ($data_foto['foto'] != 'docs/img/img_siswa/noimage.jpg') {
+                    if (file_exists($data_foto['foto'])) {
+                        unlink($data_foto['foto']);
                     }
                 }
             }
         } else {
             if($this->request->getPost('edit_password') != '') {
                 $data = array(
-                    'id_sekolah'     => $this->request->getPost('edit_sekolah'),
-                    'nomor_induk'     => $this->request->getPost('edit_nis'),
-                    'password_siswa'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
-                    'nama_siswa'     => $this->request->getPost('edit_nama'),
-                    'email_siswa'     => $this->request->getPost('edit_email'),
-                    'no_telp_siswa'     => $this->request->getPost('edit_no_telp'),
-                    'alamat_siswa'     => $this->request->getPost('edit_alamat'),
-                    'jurusan'     => $this->request->getPost('edit_jurusan'),
-                    'id_siswa'     => $this->request->getPost('id_siswa'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'password'     => base64_encode($encrypter->encrypt($this->request->getPost('edit_password'))),
+                    'nama_pendaftar'     => $this->request->getPost('edit_nama'),
+                    'email'     => $this->request->getPost('edit_email'),
+                    'no_telp'     => $this->request->getPost('edit_no_telp'),
+                    'institusi'     => $this->request->getPost('edit_institusi')
                 );
             } else {
                 $data = array(
-                    'id_sekolah'     => $this->request->getPost('edit_sekolah'),
-                    'nomor_induk'     => $this->request->getPost('edit_nis'),
-                    'nama_siswa'     => $this->request->getPost('edit_nama'),
-                    'email_siswa'     => $this->request->getPost('edit_email'),
-                    'no_telp_siswa'     => $this->request->getPost('edit_no_telp'),
-                    'alamat_siswa'     => $this->request->getPost('edit_alamat'),
-                    'jurusan'     => $this->request->getPost('edit_jurusan'),
-                    'id_siswa'     => $this->request->getPost('id_siswa'),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'nama_pendaftar'     => $this->request->getPost('edit_nama'),
+                    'email'     => $this->request->getPost('edit_email'),
+                    'no_telp'     => $this->request->getPost('edit_no_telp'),
+                    'institusi'     => $this->request->getPost('edit_institusi')
                 );
             };
         }
@@ -122,20 +100,11 @@ class Pengaturan extends BaseController
         return redirect()->to(base_url('Login/logout'));
     }
 
-    public function cek_username($username)
+    public function cek_nim($nis)
     {
         $model = new Model_pendaftar();
-        $cek_username = $model->cek_username($username)->getResultArray();
-        $respon = json_decode(json_encode($cek_username), true);
-        $data['results'] = count($respon);
-        echo json_encode($data);
-    }
-
-    public function cek_nis($nis)
-    {
-        $model = new Model_pendaftar();
-        $cek_nis = $model->cek_nis($nis)->getResultArray();
-        $respon = json_decode(json_encode($cek_nis), true);
+        $cek_nim = $model->cek_nim($nis)->getResultArray();
+        $respon = json_decode(json_encode($cek_nim), true);
         $data['results'] = count($respon);
         echo json_encode($data);
     }
@@ -150,6 +119,7 @@ class Pengaturan extends BaseController
         $data['results'] = array();
         foreach ($respon as $value) :
             $isi['idpendaftar'] = $value['idpendaftar'];
+            $isi['nim'] = $value['nim'];
             $isi['nama_pendaftar'] = $value['nama_pendaftar'];
             $isi['no_telp'] = $value['no_telp'];
             $isi['email'] = $value['email'];

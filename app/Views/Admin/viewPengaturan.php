@@ -33,8 +33,7 @@ $session = session();
 		        data-parsley-validate="true" autocomplete="off" enctype="multipart/form-data">
 		        <?= csrf_field(); ?>
 
-                    <input type="hidden" value="<?= $session->get('id_login'); ?>" name="id_admin" id="id_admin" style="display: none;">
-
+                    <input type="hidden" value="<?= $session->get('id_login'); ?>" name="idadmin" id="idadmin" style="display: none;">
 
                         <div class="form-group form-material">
                             <label class="form-control-label">Nama Admin</label>
