@@ -12,7 +12,7 @@ class Jadwal extends BaseController
     public function __construct()
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Admin') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Admin') {
             return redirect()->to('Login/loginAdmin');
         }
         $this->Model_jadwal = new Model_jadwal();
@@ -23,7 +23,7 @@ class Jadwal extends BaseController
     public function index()
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Admin') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Admin') {
             return redirect()->to('Login/loginAdmin');
         }
         

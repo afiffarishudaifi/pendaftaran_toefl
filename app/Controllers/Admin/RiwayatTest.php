@@ -12,7 +12,7 @@ class RiwayatTest extends BaseController
     public function __construct()
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Admin') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Admin') {
             return redirect()->to('Login/loginAdmin');
         }
         $this->Model_riwayat_test = new Model_riwayat_test();
@@ -23,7 +23,7 @@ class RiwayatTest extends BaseController
     public function index()
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Admin') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Admin') {
             return redirect()->to('Login/loginAdmin');
         }
         
@@ -153,7 +153,7 @@ class RiwayatTest extends BaseController
     public function detail_test($id)
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Admin') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Admin') {
             return redirect()->to('Login/loginAdmin');
         }
         

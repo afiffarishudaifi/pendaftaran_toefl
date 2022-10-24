@@ -12,7 +12,7 @@ class Test extends BaseController
     public function __construct()
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Mahasiswa') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Mahasiswa') {
             return redirect()->to(base_url('/'));
         }
         $this->Model_mahasiswa_test = new Model_mahasiswa_test();
@@ -23,7 +23,7 @@ class Test extends BaseController
     public function index()
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Mahasiswa') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Mahasiswa') {
             return redirect()->to(base_url('/'));
         }
         
@@ -143,7 +143,7 @@ class Test extends BaseController
     public function detail_test($id)
     {
         $session = session();
-        if (!$session->get('nama_login') || $session->get('status_login') != 'Mahasiswa') {
+        if (!$session->get('nama_login') && $session->get('status_login') != 'Mahasiswa') {
             return redirect()->to(base_url('/'));
         }
         

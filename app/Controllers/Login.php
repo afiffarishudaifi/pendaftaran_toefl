@@ -10,9 +10,9 @@ class Login extends BaseController
     {
         $session = session();
 
-        if ($session->get('nama_login') || $session->get('status_login') == 'Siswa') {
-            return redirect()->to('Peserta/Dashboard');
-        } else if ($session->get('nama_login') || $session->get('status_login') == 'Admin') {
+        if ($session->get('nama_login') && $session->get('status_login') == 'Mahasiswa') {
+            return redirect()->to('Mahasiswa/Dashboard');
+        } else if ($session->get('nama_login') && $session->get('status_login') == 'Admin') {
             return redirect()->to('Admin/Dashboard');
         }
 
@@ -24,7 +24,7 @@ class Login extends BaseController
     {
         $session = session();
 
-        if ($session->get('nama_login') || $session->get('status_login') == 'Admin') {
+        if ($session->get('nama_login') && $session->get('status_login') == 'Admin') {
             return redirect()->to('Admin/Dashboard');
         } 
 
@@ -74,9 +74,9 @@ class Login extends BaseController
     {
         $session = session();
 
-        if ($session->get('nama_login') || $session->get('status_login') == 'Mahasiswa') {
-            return redirect()->to('Mahsiswa/Dashboard');
-        } else if ($session->get('nama_login') || $session->get('status_login') == 'Admin') {
+        if ($session->get('nama_login') && $session->get('status_login') == 'Mahasiswa') {
+            return redirect()->to('Mahasiswa/Dashboard');
+        } else if ($session->get('nama_login') && $session->get('status_login') == 'Admin') {
             return redirect()->to('Admin/Dashboard');
         }
         
