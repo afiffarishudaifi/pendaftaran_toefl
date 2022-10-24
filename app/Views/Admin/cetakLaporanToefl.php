@@ -21,7 +21,6 @@
 		table tr td {
 			font-size: 13px;
 		}
-
 	</style>
 </head>
 <body>
@@ -31,11 +30,10 @@
 				<td><img src="<?= base_url() ?>/docs/img/img_logo/logokab.gif" width="90" height="90"></td>
 				<td>
 				<center>
-					<font size="4"><b>PEMERINTAH KABUPATEN MADIUN</b></font><br>
-					<font size="3"><b>BADAN KESATUAN BANGSA DAN POLITIK DALAM NEGERI</b></font><br>
-					<font size="2"><i><?= $profil['alamat'] ?></i></font><br>
-					<font size="2"><i>Email : <?= $profil['email'] ?></i></font><br>
-					<font size="3">CARUBAN (63153)</font>
+					<font size="4"><b>Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi</b></font><br>
+					<font size="3"><b>UNIVERSITAS PGRI MADIUN</b></font><br>
+					<font size="2">Jl. Setia Budi No.85, Kanigoro, Kec. Kartoharjo, Kota Madiun, Jawa Timur 63118</font><br>
+					<font size="2"><i>Website : http://unipma.ac.id Email : rektorat@unipma.ac.id</i></font><br>
 				</center>
 				</td>
 			</tr>
@@ -52,7 +50,7 @@
             <tr>
                 <th style="text-align: center;">No</th>
                 <th style="text-align: center;">Nama Jadwal</th>
-                <th style="text-align: center;">Nama Peserta</th>
+                <th style="text-align: center;">Nama Pendaftar</th>
                 <th style="text-align: center;">Email</th>
                 <th style="text-align: center;">Waktu Mulai</th>
                 <th style="text-align: center;">Waktu Selesai</th>
@@ -75,12 +73,12 @@
 		<table width="625">
 			<tr>
 				<td width="430"><br><br><br><br></td>
-				<td class="text" align="center">Kepala BANKESBANPOLDAGRI<br><br><br><br><?= $profil['kepala'] ?></td>
+				<td class="text" align="center">Kepala Pendaftar Toefl<br><br><br><br>Rangga Mukti S.Pd, M.Pd</td>
 			</tr>
 	     </table>
 	</center>
 </body>
 	<script>
-		window.print();
+		// window.print();
 	</script>
 </html>

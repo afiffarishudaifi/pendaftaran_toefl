@@ -30,11 +30,6 @@ class Test extends BaseController
         $tanggal = date('Y-m-d');
         $model = new Model_mahasiswa_test();
         $jadwal = $model->view_data($tanggal)->getResultArray();
-        $arr_jadwal = [];
-        foreach($jadwal as $item) {
-            $arr_jadwal[] = $item['idjadwal'];
-        }
-
         $data = [
             'judul' => 'Tabel Pelaksanaan Toefl',
             'jadwal' => $jadwal

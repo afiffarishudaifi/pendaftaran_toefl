@@ -17,6 +17,8 @@ class Model_mahasiswa_test extends Model
         $builder->join('periode','periode.idperiode = jadwal.idperiode');
         $builder->join('jenis','jenis.idjenis = jadwal.idjenis');
         $builder->where('jadwal.tanggal_mulai_pelaksanaan >=',  $tanggal);
+        $builder->where('periode.aktif', 1);
+        $builder->where('jenis.aktif', 1);
         $builder->groupBy('jadwal.idjadwal');
         return $builder->get();
     }
@@ -25,6 +27,7 @@ class Model_mahasiswa_test extends Model
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('jenis');
+        $builder->where('aktif', 1);
         return $builder->get();
     }
     
@@ -32,6 +35,7 @@ class Model_mahasiswa_test extends Model
     {
         $db      = \Config\Database::connect();
         $builder = $db->table('periode');
+        $builder->where('aktif', 1);
         return $builder->get();
     }
 
