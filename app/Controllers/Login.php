@@ -181,6 +181,7 @@ class Login extends BaseController
     {
         $session = session();
         $session->destroy();
+        // $session->setFlashdata('msg', 'Sudah berhasil logout, silahkan login kembali untuk dapat mengakses website ini');
         return redirect()->to(base_url('/'));
     }
 }

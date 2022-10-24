@@ -154,15 +154,6 @@ class Pendaftar extends BaseController
         return redirect()->to('/Admin/Pendaftar');
     }
 
-    public function cek_username($username)
-    {
-        $model = new Model_pendaftar();
-        $cek_username = $model->cek_username($username)->getResultArray();
-        $respon = json_decode(json_encode($cek_username), true);
-        $data['results'] = count($respon);
-        echo json_encode($data);
-    }
-
     public function cek_nim($nim)
     {
         $model = new Model_pendaftar();

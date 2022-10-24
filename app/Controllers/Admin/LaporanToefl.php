@@ -78,7 +78,8 @@ class LaporanToefl extends BaseController
             'judul' => 'Laporan Pelaksanaan Toefl ' . $tanggal,
             'laporan' => $laporan
         ];
-        return view('Admin/cetakLaporanToefl', $data);
+        return view('Admin/viewLaporanToefl', $data);
+        // return view('Admin/cetakLaporanToefl', $data);
     }
 
     public function data_jadwal()
