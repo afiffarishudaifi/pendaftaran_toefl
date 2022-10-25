@@ -96,8 +96,21 @@ class Pengaturan extends BaseController
         }
 
         $model->update_data($data, $id);
+        
+        $array_items = ['nama_login', 'foto'];
+        $session->remove($array_items);
+
+        $data_session = $model->detail_data($id)->getRowArray();
+        $newdata = [
+            'nama_login'  => $data_session['nama_pendaftar'],
+            'foto'     => $data_session['foto']
+        ];
+
+        $session->set($newdata);
+
         $session->setFlashdata('sukses', 'Data sudah berhasil diubah');
-        return redirect()->to(base_url('Login/logout'));
+        return redirect()->to(base_url('Mahasiswa/Pengaturan'));
+        // return redirect()->to(base_url('Login/logout'));
     }
 
     public function cek_nim($nis)

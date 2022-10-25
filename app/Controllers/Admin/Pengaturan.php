@@ -61,7 +61,20 @@ class Pengaturan extends BaseController
         };
 
         $model->update_data($data, $id);
+
+        $array_items = ['nama_login'];
+        $session->remove($array_items);
+
+        $data_session = $model->detail_data($id)->getRowArray();
+        $newdata = [
+            'nama_login'  => $data_session['nama_admin']
+        ];
+
+        $session->set($newdata);
+
         $session->setFlashdata('pengaturan', 'Data sudah berhasil diubah');
-        return redirect()->to(base_url('Login/logout'));
+        return redirect()->to(base_url('Admin/Pengaturan'));
+
+        // return redirect()->to(base_url('Login/logout'));
     }
 }
