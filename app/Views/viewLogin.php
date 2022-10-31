@@ -51,7 +51,7 @@
             <img class="brand-img" style="width: 10%;" src="<?= base_url() ?>/docs/themeforest/base/assets/images/favicon.ico" alt="...">
             <h2 class="brand-text font-size-40">Pendaftaran Toefl</h2>
           </div>
-          <p class="font-size-20">Selamat Datang di Pendaftaran Toefl Universitas PGRI Kabupaten Madiun.</p>
+          <p class="font-size-20">Selamat Datang di Pendaftaran Toefl Universitas PGRI Madiun.</p>
         </div>
 
         <div class="page-login-main">
