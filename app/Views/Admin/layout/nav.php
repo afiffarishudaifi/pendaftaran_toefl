@@ -41,7 +41,6 @@
             </li>
             <li class="nav-item hidden-sm-down">
               <h3>
-                   <?php echo date('d M Y') ?>
               </h3>
             </li>
           </ul>
