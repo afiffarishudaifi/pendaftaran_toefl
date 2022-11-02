@@ -21,7 +21,6 @@
         </div>
 
         <div class="page-content">
-
             <!-- Panel Table Individual column searching -->
             <div class="panel">
                 <header class="panel-heading">
@@ -73,9 +72,7 @@
                     </table>
                 </div>
             </div>
-            <!-- End Panel Table Individual column searching -->
-
-            
+            <!-- End Panel Table Individual column searching -->            
 
             <!-- Modal Edit Class-->
             <form action="<?php echo base_url('Mahasiswa/RiwayatTest/upload_sertifikat'); ?>" method="post" id="form_edit"
@@ -118,7 +115,6 @@
                 </div>
             </form>
             <!-- End Modal Edit Class-->
-
         </div>
     </div>
     <!-- End Page -->

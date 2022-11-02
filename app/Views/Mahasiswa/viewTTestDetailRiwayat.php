@@ -21,7 +21,6 @@
         </div>
 
         <div class="page-content">
-
             <!-- Panel Table Individual column searching -->
             <div class="panel">
                 <header class="panel-heading">
@@ -71,7 +70,6 @@
                 </div>
             </div>
             <!-- End Panel Table Individual column searching -->
-
         </div>
     </div>
     <!-- End Page -->
